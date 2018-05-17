@@ -6,5 +6,8 @@
             title: "test",
             Header1: 'Hello Vue!',
             visiblePTag: true
+        },
+        methods: {
+            log: () => console.log("hi")
         }
     });
