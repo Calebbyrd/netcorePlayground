@@ -6,11 +6,22 @@
 
 </script>
 
-<div id="app" v-bind:title="title">
+<div id="app">
     <h1 v-bind:id="app">{{ Header1 }}</h1>
-    <p v-on:click="log" v-if="visiblePTag">asdfasdfasdf</p>
+    <span v-on:click="toggleP" v-if="visiblePostList">{{HideToggleText}}</span>
+    <span v-on:click="toggleP" v-if="!visiblePostList">{{ShowToggleText}}</span>
+    <transition name="fade">
+        <div v-if="visiblePostList" >
+            <ul>
+                <li v-for="post in posts">
+                    <h2>{{post.title}}</h2>
+                    <p>{{post.body}}</p>
+                </li>
+            </ul>
+        </div>
+    </transition>
 </div>
-
+<p>test</p>
 <script src="~/js/Home.js"></script>
 
 

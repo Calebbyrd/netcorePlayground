@@ -3,11 +3,25 @@
         el: '#app',
         data: {
             app: 'myID',
-            title: "test",
             Header1: 'Hello Vue!',
-            visiblePTag: true
+            HideToggleText: 'Hide',
+            ShowToggleText: 'Show',
+            visiblePostList: true,
+            posts: [
+                {
+                    title: 'test1',
+                    body: 'test post info 1'
+                }, {
+                    title: 'test2',
+                    body: 'test post info 2'
+                }, {
+                    title: 'test3',
+                    body: 'test post info 3'
+                }]
         },
         methods: {
-            log: () => console.log("hi")
+            toggleP: function () {
+                app.visiblePostList = !app.visiblePostList;
+            }
         }
-    });
+});
