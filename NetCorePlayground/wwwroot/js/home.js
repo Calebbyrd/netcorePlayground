@@ -16,9 +16,19 @@ var app = new Vue({
     },
     components: [postComponent],
     methods: {
-        //toggleP: function () {
-        //    app.showPostList = !app.showPostList;
-        //}
+        toggleP: function () {
+            app.showPostList = !app.showPostList;
+        },
+        showNewPostForm: function() {
+            app.showNewPost = !app.showNewPost;
+        },
+        submitNewPost: function () {
+            
+            app.posts.push({title: app.newPost.title, body: app.newPost.body});
+            app.newPost.title = "";
+            app.newPost.body = "";
+            app.showNewPostForm();
+        }
     }
 });
 
