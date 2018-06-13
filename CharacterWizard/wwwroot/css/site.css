@@ -1,0 +1,14 @@
+footer {
+    position: fixed;
+    bottom: 0;
+}
+#characterBuilder {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+}
+#characterSheet {
+    column-span: 2;
+}
+.fullWidth {
+    grid-area: 1 / 1 / 1 / end;
+}
