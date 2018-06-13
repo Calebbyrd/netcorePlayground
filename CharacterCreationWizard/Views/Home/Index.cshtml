@@ -9,7 +9,7 @@
 
 
 <div id="app">
-    <h1>{{ Header1 }}</h1>
+    <h1>{{Header1}}</h1>
     <button v-on:click="showNewPostForm">New Post</button>
     <br />
     <button v-on:click="toggleP" v-if="showPostList">{{HideToggleText}}</button>
@@ -24,11 +24,10 @@
     </div>
     <transition name="fade">
         <div v-if="showPostList" class="postList">
-            <ul >
-                <post
-                    v-for="entry in posts"
-                    :entry="entry"
-                    :key="entry.title">
+            <ul>
+                <post v-for="entry in posts"
+                      :entry="entry"
+                      :key="entry.title">
                 </post>
             </ul>
         </div>
@@ -37,4 +36,5 @@
 </div>
 
 
-<script src="~/js/Home.js" type="module"></script>
+<script src="~/js/Home.js" type="module">
+</script>
