@@ -1,3 +1,8 @@
+ul{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
 footer {
     position: fixed;
     bottom: 0;
@@ -10,5 +15,29 @@ footer {
     column-span: 2;
 }
 .fullWidth {
-    grid-area: 1 / 1 / 1 / end;
+    grid-column-start: 1;
+    grid-column-end: end;
+}
+#playerInfoBar {
+    display: grid;
+    grid-template-columns: 1fr 150px;
+}
+.switchPlayer {
+    cursor: pointer;
+    padding: 20px;
+    display: inline-block;
+}
+#playerSelection {
+    position: absolute;
+    right: 15px;
+    background-color: gainsboro;
+    border: 1px solid black;
+}
+.playerSelectItem {
+    border-bottom: 1px solid black;
+    padding: 5px 20px;
+    cursor: pointer;
+}
+.playerSelectItem:hover {
+    background-color: cornsilk;
 }
