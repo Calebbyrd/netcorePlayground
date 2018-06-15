@@ -1,9 +1,25 @@
 ﻿
-GetPlayers = function () {
+InitCharacterWizard = function () {
     fetch("/CharacterWizard/GetPlayers").then(function (response) { return response.json(); })
         .then(function (result) {
             CharWiz.players = result;
         });
+    CharWiz.fullPageMessage = "Welcome Adventurer. Would you like to"
+    CharWiz.fullPageOptions = [
+        {
+            text: "Choose your Fate",
+            callback: function () {
+                CharWiz.fullPageVisible = false;
+                CharWiz.sheetVisible = true;
+            }
+        }, {
+            text: "Seek Guidance",
+            callback: function () {
+                CharWiz.fullPageVisible = false;
+                CharWiz.sheetVisible = true;
+            }
+        }
+    ];
 }
 
 
@@ -11,54 +27,39 @@ var CharWiz = new Vue({
     el: '#characterBuilder',
     data: {
         players: {},
-        selectedPlayer:"None",
+        selectedPlayer: "None",
+        characters: {},
+        selectedCharacter: "None",
         playerCharacters: {},
         visiblePlayerList: false,
-        Header1: 'Hello Vue!',
-        creationItems: [
-            {
-                title: 'Item 1',
-                status: 'Complete',
-                desc: 'the first item'
-            },
-            {
-                title: 'Item 2',
-                status: 'Incomplete',
-                desc: 'the second item'
-            },
-            {
-                title: 'Item 3',
-                status: 'Incomplete',
-                desc: 'the third item'
-            }
-            ]
-        },
+        fullPageVisible: true,
+        fullPageMessage: "",
+        fullPageOptions: {},
+        sheetVisible: false,
+        Header1: 'Hello Vue!'
+    },
     methods: {
         startCreationWizard: function () {
             fetch("/CharacterWizard/GetNewCharacter").then(function (response) { return response.json(); })
                 .then(function (result) {
-            }); 
-        },
-        switchPlayer: function () {
-            fetch("/CharacterWizard/GetCharacters").then(function (response) { return response.json(); })
-                .then(function (result) {
                 });
         },
-        GetPlayerCharacters: function (playerId) {
+        GetPlayerCharacters: function (player) {
+            CharWiz.selectedPlayer = player.playerName;
             fetch("/CharacterWizard/GetPlayerCharacters",
-                    {
-                        method: 'POST', // or 'PUT'
-                        body: ""+playerId, // data can be `string` or {object}!
-                        headers: {
-                            'Content-Type': 'application/json'
-                        }
-                    }).then(function (response) { return response.json(); })
+                {
+                    method: 'POST',
+                    body: "" + player.playerId,
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                }).then(function (response) { return response.json(); })
                 .then(function (result) {
                     CharWiz.playerCharacters = result;
                 });
-        } 
+        }
     },
     mounted: function () {
-        this.$nextTick(GetPlayers);
+        this.$nextTick(InitCharacterWizard);
     }
 });

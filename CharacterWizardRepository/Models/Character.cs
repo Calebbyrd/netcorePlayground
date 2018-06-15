@@ -8,6 +8,10 @@ namespace CharacterWizardRepository.Models
         public int PlayerId { get; set; }
         public string CharacterName { get; set; }
         public int Level { get; set; }
+        public string Outline { get; set; }
+        public string Flaws { get; set; }
+        public string Ideals { get; set; }
+        public string Bonds { get; set; }
         public string Race { get; set; }
         public CharacterClass Class { get; set; }
         public Alignment Alignment { get; set; }
@@ -21,3 +25,4 @@ namespace CharacterWizardRepository.Models
         public List<Skills> Skills { get; set; } = new List<Skills>();
     }
 }
+

@@ -1,0 +1,10 @@
+﻿<div id="creationChecklist">
+    <h1>Pick an option or <span>Seek Guidance</span></h1>
+    <button v-on:click="startCreationWizard">Seek Guidance</button>
+    <ul>
+        <li v-for="item in creationItems">
+            <h2>{{item.title}}</h2>
+            <p>{{item.body}}</p>
+        </li>
+    </ul>
+</div>

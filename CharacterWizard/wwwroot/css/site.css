@@ -10,9 +10,24 @@ footer {
 #characterBuilder {
     display: grid;
     grid-template-columns: 300px 1fr;
+    height: 100vh;
+    grid-template-areas: "t t t t" "h h h h" "m m m m" "m m m m" "f f f f" "b b b b";
 }
 #characterSheet {
-    column-span: 2;
+    grid-area: m;
+}
+.fullScreenWrapper {
+    grid-column-start: 1;
+    grid-column-end: end;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: 35vh;
+    grid-template-areas: ". a a ." ". a a .";
+}
+.fullScreenInsert{
+    grid-area: a;
+    align-self: center;
+    justify-self: center;
 }
 .fullWidth {
     grid-column-start: 1;
@@ -39,5 +54,22 @@ footer {
     cursor: pointer;
 }
 .playerSelectItem:hover {
+    background-color: cornsilk;
+}
+.buttonWrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+.genericButton {
+    display: inline-block;
+    background-color: gainsboro;
+    border: 1px solid black;
+    cursor: pointer;
+    padding: 10px 20px;
+    border-radius:  5px;
+    font-weight: 700;
+}
+.genericButton:hover {
     background-color: cornsilk;
 }

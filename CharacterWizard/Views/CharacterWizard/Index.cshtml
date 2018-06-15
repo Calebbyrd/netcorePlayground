@@ -3,45 +3,48 @@
 }
 
 <div id="characterBuilder">
-    <div id="playerInfoBar" class="fullWidth">
-        <div>
-            <h3>{{selectedPlayer}}</h3>
-        </div>
-        <div>
-            <span v-on:click="visiblePlayerList=!visiblePlayerList" class="switchPlayer">Switch</span>
-            <div v-if="visiblePlayerList" id="playerSelection">
-                <ul>
-                    <li v-for="player in players"
-                        v-on:click="GetPlayerCharacters(player.playerId)"
-                        class="playerSelectItem">
-                        {{player.playerName}}
-                    </li>
-                </ul>
+    <transition name="fade">
+        <div class="fullScreenWrapper" v-if="fullPageVisible">
+            <div class="fullScreenInsert">
+
+            
+            <h2>{{fullPageMessage}}</h2>
+                <div class="buttonWrapper">
+                        <span v-for="option in fullPageOptions"
+                            v-on:click="option.callback"
+                            class="genericButton">
+                            {{option.text}}
+                        </span>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="fullWidth">
-        <h2>Character Name: test</h2>
-    </div>
-    <div id="creationSidebar">
-        <h1>Creation Steps</h1>
-        <ul>
-            <li v-for="item in creationItems">
-                <h2>{{item.title}}</h2>
-                <p>{{item.body}}</p>
-            </li>
-        </ul>
-    </div>
-    <transition name="fade">
-        <div id="creationChecklist">
-            <h1>Pick an option or <span>Seek Guidance</span></h1>
-            <button v-on:click="startCreationWizard">Seek Guidance</button>
-            <ul>
-                <li v-for="item in creationItems">
-                    <h2>{{item.title}}</h2>
-                    <p>{{item.body}}</p>
-                </li>
-            </ul>
+       
+        <div v-if="sheetVisible" id="characterSheet">
+            <div id="playerInfoBar" class="fullWidth">
+                <div>
+                    <h3>{{selectedPlayer}}</h3>
+                </div>
+                <div>
+                    <span v-on:click="visiblePlayerList=!visiblePlayerList" class="switchPlayer">Switch</span>
+                    <div v-if="visiblePlayerList" id="playerSelection">
+                        <ul>
+                            <li v-for="player in players"
+                                v-on:click="GetPlayerCharacters(player)"
+                                class="playerSelectItem">
+                                {{player.playerName}}
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="fullWidth">
+                <h2>Character Name: test</h2>
+            </div>
+            <div id="creationSidebar">
+                @Html.Partial("_sidebar");
+            </div>
+
+            @Html.Partial("_splash");
         </div>
     </transition>
 </div>
